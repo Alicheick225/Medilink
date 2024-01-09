@@ -22,6 +22,7 @@ Route::get('/', [HomeController::class, 'Index']);
 
 Route::get('/accueil', [HomeController::class, 'Redirect']);
 
+Route::get('/admin_dashboard', [AdminController::class, 'AdminDashboard']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
