@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,13 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Creation de l'URL de la page d'accueil
+
+Route::get('/', [HomeController::class, 'Index']);
+
+Route::get('/accueil', [HomeController::class, 'Redirect']);
+
+Route::get('/admin_dashboard', [AdminController::class, 'AdminDashboard']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,6 +35,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-// Creation du chemin d'acces vers le tableau de bord de l'administrateur. Aucun utilisateur n'ayant le role Admin ne peut y acceder
-Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
